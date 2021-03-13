@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %} Create a new blog post {% endblock %}
+
+{% block content %}
+
+<h1>{{ post.title }}</h1>
+    By: {{ post.author.first_name }}
+    {{ post.author.last_name }} -
+    {{ post.post_date}} <br>
+    <hr>
+    </br>
+    {{ post.body|safe }}
+    </br></br>
+    <a href="{% url 'home' %}" class="btn btn-sm btn-secondary"> Back </a>
+{% if user.is_authenticated %}
+    <a href="{% url 'update_post' post.pk %}" class="btn btn-sm btn-secondary"> Edit </a>
+    <a href="{% url 'delete_post' post.pk %}" class="btn btn-sm btn-secondary"> Delete </a></small>
+{% endif %}
+{% endblock %}
